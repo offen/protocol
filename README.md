@@ -1,6 +1,26 @@
 # protocol
 A specification for discoverable exchange of data over a single HTTP endpoint
 
+<!-- MarkdownTOC -->
+
+- [Abstract](#abstract)
+- [Operations](#operations)
+  - [Probe](#probe)
+  - [Register](#register)
+  - [Submit](#submit)
+  - [Query](#query)
+  - [Purge](#purge)
+- [Mapping operations to HTTP](#mapping-operations-to-http)
+- [Example flow](#example-flow)
+  - [1. Probe](#1-probe)
+  - [2. Register](#2-register)
+  - [3. Submit](#3-submit)
+  - [4. Query](#4-query)
+  - [5. Purge](#5-purge)
+
+<!-- /MarkdownTOC -->
+
+
 ## Abstract
 
 Paradigms around the collection of usage data on the web are shifting.
@@ -37,6 +57,11 @@ At any time, a client can query the server for all data that is associated with 
 
 In case a client decides it wants all of the associated data removed from the server, it performs a purge.
 Servers can also decide to unregister the client when performing such a purge.
+
+## Mapping operations to HTTP
+
+When following the Offen protocol, all client-server communication is expected to be handled by a single endpoint.
+Operations map to HTTP verbs and depend on whether the client has registered yet.
 
 ## Example flow
 
