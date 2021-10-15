@@ -52,10 +52,11 @@ A client probes a server by performing a `GET` request that does not send a user
 A client registers with a server by performing a `POST` request that does not send a user id.
 In case additional data is required for registration, the client can send it in the request's body.
 The server's response must include a user identifier.
+In case a user identifier is sent with the request, the server must reject it.
 
 ### Submit
 
-A client submits data to the server by performing a `POST` request that includes a user id.
+A client submits data to the server by performing a `PUT` request that includes a user id.
 Servers can implement different mechanisms for detecting these identifiers.
 
 ### Query
