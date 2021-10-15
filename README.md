@@ -1,13 +1,13 @@
 # protocol
-A specification for transparent and discoverable exchange of data over a single HTTP endpoint
+A specification for discoverable exchange of data over a single HTTP endpoint
 
 ## Abstract
 
 Paradigms around the collection of usage data on the web are shifting.
 While collection and usage of such data itself isn't likely to go away soon, application developers are looking for new tools and approaches they can use to handle these transactions in a fair and transparent manner.
 
-The Offen protocol specifies a set of operations that can be used to transparently collect usage data over a single HTTP endpoint and allow users to manage and review the data that is associated to them.
-It aims for creating a common set of idioms that can be picked up by implementors that aim for maximum transparency and interoperability.
+The Offen protocol aims for creating a common set of idioms that can be picked up by implementors that strive for maximum transparency and interoperability.
+It specifies a set of operations that can be used to transparently collect usage data over a single HTTP endpoint and allow users to manage and review the data that is associated to them.
 
 ## Example flow
 
