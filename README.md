@@ -1,6 +1,9 @@
 # protocol
 A specification for discoverable exchange of data over a single HTTP endpoint
 
+__This document is an early draft and may change at any time__.
+Open an issue on this repository in case you have feedbacks or wish to implement the specification.
+
 ## Abstract
 
 Paradigms around the collection of usage data on the web are shifting.
