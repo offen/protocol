@@ -1,9 +1,17 @@
 # protocol
 A specification for transparent and discoverable exchange of data over a single HTTP endpoint
 
+## Abstract
+
+Paradigms around the collection of usage data on the web are shifting.
+While collection and usage of such data itself isn't likely to go away soon, application developers are looking for new tools and approaches they can use to handle these transactions in a fair and transparent manner.
+
+The Offen protocol specifies a set of operations that can be used to transparently collect usage data over a single HTTP endpoint and allow users to manage and review the data that is associated to them.
+It aims for creating a common set of idioms that can be picked up by implementors that aim for maximum transparency and interoperability.
+
 ## Example flow
 
-### 1. Acquire prerequisites (optional)
+### 1. Probe
 
 Request:
 
@@ -50,7 +58,7 @@ Set-Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998; Path=/; Expires=Tue, 19 A
 Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 ```
 
-### 3. Submit data
+### 3. Submit
 
 Request:
 
@@ -78,7 +86,7 @@ Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 { "ack": true }
 ```
 
-### 4. Query data
+### 4. Query
 
 Request:
 
@@ -100,7 +108,7 @@ Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 { "data": {} }
 ```
 
-### 5. Delete data
+### 5. Purge
 
 Request:
 
