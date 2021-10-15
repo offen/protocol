@@ -47,6 +47,25 @@ Operations map to HTTP verbs and depend on whether the client has registered yet
 
 A client probes a server by performing a `GET` request that does not send a user id.
 
+#### Request
+
+```http
+GET / HTTP/1.1
+Accept: application/json
+Host: example.com
+```
+
+#### Response
+
+```http
+HTTP/1.1 200 OK
+Content-Length: 12
+Content-Type: application/json
+Date: Fri, 15 Oct 15 2021 12:04:12 GMT
+
+// Application specific response body ...
+```
+
 ### Register
 
 A client registers with a server by performing a `POST` request that does not send a user id.
@@ -54,33 +73,47 @@ In case additional data is required for registration, the client can send it in 
 The server's response must include a user identifier.
 In case a user identifier is sent with the request, the server must reject it.
 
+#### Request
+
+```http
+POST / HTTP/1.1
+Accept: application/json
+Host: example.com
+```
+
+#### Response
+
+```http
+HTTP/1.1 200 OK
+Content-Length: 12
+Content-Type: application/json
+Date: Fri, 15 Oct 15 2021 12:04:12 GMT
+
+// Application specific optional response body ...
+```
+
+#### Receiving the user identifier
+
+In case the client is a browser, the most probable way of sending the user identifier is using the `Set-Cookie` header.
+In case the client is another service other means of submitting the identifier can be chosen.
+
 ### Submit
 
 A client submits data to the server by performing a `PUT` request that includes a user id.
 Servers can implement different mechanisms for detecting these identifiers.
 
-### Query
-
-A client queries a server by performing a `GET` request that includes a user id.
-
-### Purge
-
-A client purges its data on the server by performing a `DELETE` request that includes a user id.
-In case the client wishes to deregister itself, it has to signal this in the request body.
-
-## Example flow
-
-### 1. Probe
-
-Request:
+#### Request
 
 ```http
-GET / HTTP/1.1
+PUT / HTTP/1.1
 Accept: application/json
+Content-Type: application/json
 Host: example.com
+
+// Application specific request body ...
 ```
 
-Response:
+#### Response
 
 ```http
 HTTP/1.1 201 Created
@@ -88,100 +121,70 @@ Content-Length: 12
 Content-Type: application/json
 Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 
-{
-  "response": {}
-}
+// Application specific response body ...
 ```
 
-### 2. Register
+#### Sending the user identifier
 
-Request:
+In case the client is a browser, the most probable way of sending the user identifier is using the `Cookie` header.
+In case the client is another service other means of submitting the identifier can be chosen.
 
-```http
-POST / HTTP/1.1
-Accept: application/json
-Content-Type: application/json
-Host: example.com
+### Query
 
-{
-  "payload": {}
-}
+A client queries a server by performing a `GET` request that includes a user id.
 
-```
-
-Response:
-
-```http
-HTTP/1.1 204 No Content
-Set-Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998; Path=/; Expires=Tue, 19 Apr 2022 10:05:11 GMT; HttpOnly
-Date: Fri, 15 Oct 15 2021 12:04:12 GMT
-```
-
-### 3. Submit
-
-Request:
-
-```http
-POST / HTTP/1.1
-Accept: application/json
-Content-Type: application/json
-Host: example.com
-Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998
-
-{
-  "payload": {}
-}
-
-```
-
-Response:
-
-```http
-HTTP/1.1 201 Created
-Content-Type: application/json
-Set-Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998; Path=/; Expires=Tue, 19 Apr 2022 10:05:11 GMT; HttpOnly
-Date: Fri, 15 Oct 15 2021 12:04:12 GMT
-
-{ "ack": true }
-```
-
-### 4. Query
-
-Request:
+#### Request
 
 ```http
 GET / HTTP/1.1
 Accept: application/json
 Content-Type: application/json
 Host: example.com
-Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998
+
+// Application specific request body ...
 ```
 
-Response:
+#### Response
 
 ```http
 HTTP/1.1 200 OK
+Content-Length: 12
 Content-Type: application/json
 Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 
-{ "data": {} }
+// Application specific response body ...
 ```
 
-### 5. Purge
+#### Sending the user identifier
 
-Request:
+In case the client is a browser, the most probable way of sending the user identifier is using the `Cookie` header.
+In case the client is another service other means of submitting the identifier can be chosen.
+
+### Purge
+
+A client purges its data on the server by performing a `DELETE` request that includes a user id.
+In case the client wishes to deregister itself, it has to signal this in the request body.
+
+#### Request
 
 ```http
 DELETE / HTTP/1.1
 Accept: application/json
 Content-Type: application/json
 Host: example.com
-Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998
+
+// Application specific request body ...
 ```
 
-Response:
+#### Response
 
 ```http
 HTTP/1.1 204 No Content
+Content-Length: 12
 Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 ```
+
+#### Sending the user identifier
+
+In case the client is a browser, the most probable way of sending the user identifier is using the `Cookie` header.
+In case the client is another service other means of submitting the identifier can be chosen.
