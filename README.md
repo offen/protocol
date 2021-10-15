@@ -9,6 +9,35 @@ While collection and usage of such data itself isn't likely to go away soon, app
 The Offen protocol aims for creating a common set of idioms that can be picked up by implementors that strive for maximum transparency and interoperability.
 It specifies a set of operations that can be used to transparently collect usage data over a single HTTP endpoint and allow users to manage and review the data that is associated to them.
 
+## Operations
+
+To describe the collection and handling of data, the Offen protocol defines a set of five operations that should be the base for implementing the exchange of data in an application or library.
+
+### Probe
+
+A client can probe a server in order to acquire additional information about the service or collect prerequisistes that might be needed for registering or submitting data.
+This operation is optional for implementations that do not require similar data to be fetched.
+
+### Register
+
+Before submitting any data, a client needs to register with the server.
+The response must send a unique identifier in the response that the client can then use to identify itself in subsequent requests.
+Trying to register when already having registered must fail.
+Clients that want to re-register are expected to purge their data beforehand.
+
+### Submit
+
+When data is being collected, a client submits a payload to the server.
+
+### Query
+
+At any time, a client can query the server for all data that is associated with it.
+
+### Purge
+
+In case a client decides it wants all of the associated data removed from the server, it performs a purge.
+Servers can also decide to unregister the client when performing such a purge.
+
 ## Example flow
 
 ### 1. Probe
