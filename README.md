@@ -12,6 +12,13 @@ While collection and usage of such data itself isn't likely to go away soon, app
 The Offen protocol aims for creating a common set of idioms that can be picked up by implementors that strive for maximum transparency and interoperability.
 It specifies a set of operations that can be used to transparently collect usage data over a single HTTP endpoint and allow users to manage and review the data that is associated to them.
 
+### Motivation
+
+This document aims to collect the learnings and patterns we have found and implemented when building [Offen][offen-repo].
+While the subject seems simple enough, we found it contains unexpected subtleties that are easy to miss, which is why we want to formalize our approach and help other developers to do what we are doing in Offen: let users access their data.
+
+[offen-repo]: https://github.com/offen/offen
+
 ## Operations
 
 To describe the collection and handling of data, the Offen protocol defines a set of five operations that should be the base for implementing the exchange of data in an application or library.
