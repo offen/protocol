@@ -1,26 +1,6 @@
 # protocol
 A specification for discoverable exchange of data over a single HTTP endpoint
 
-<!-- MarkdownTOC -->
-
-- [Abstract](#abstract)
-- [Operations](#operations)
-  - [Probe](#probe)
-  - [Register](#register)
-  - [Submit](#submit)
-  - [Query](#query)
-  - [Purge](#purge)
-- [Mapping operations to HTTP](#mapping-operations-to-http)
-- [Example flow](#example-flow)
-  - [1. Probe](#1-probe)
-  - [2. Register](#2-register)
-  - [3. Submit](#3-submit)
-  - [4. Query](#4-query)
-  - [5. Purge](#5-purge)
-
-<!-- /MarkdownTOC -->
-
-
 ## Abstract
 
 Paradigms around the collection of usage data on the web are shifting.
@@ -58,10 +38,34 @@ At any time, a client can query the server for all data that is associated with 
 In case a client decides it wants all of the associated data removed from the server, it performs a purge.
 Servers can also decide to unregister the client when performing such a purge.
 
-## Mapping operations to HTTP
+## Mapping operations to HTTP requests
 
 When following the Offen protocol, all client-server communication is expected to be handled by a single endpoint.
 Operations map to HTTP verbs and depend on whether the client has registered yet.
+
+### Probe
+
+A client probes a server by performing a `GET` request that does not send a user id.
+
+### Register
+
+A client registers with a server by performing a `POST` request that does not send a user id.
+In case additional data is required for registration, the client can send it in the request's body.
+The server's response must include a user identifier.
+
+### Submit
+
+A client submits data to the server by performing a `POST` request that includes a user id.
+Servers can implement different mechanisms for detecting these identifiers.
+
+### Query
+
+A client queries a server by performing a `GET` request that includes a user id.
+
+### Purge
+
+A client purges its data on the server by performing a `DELETE` request that includes a user id.
+In case the client wishes to deregister itself, it has to signal this in the request body.
 
 ## Example flow
 
