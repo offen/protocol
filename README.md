@@ -73,7 +73,7 @@ In case the client wishes to deregister itself, it has to signal this in the req
 
 Request:
 
-```
+```http
 GET / HTTP/1.1
 Accept: application/json
 Host: example.com
@@ -81,7 +81,7 @@ Host: example.com
 
 Response:
 
-```
+```http
 HTTP/1.1 201 Created
 Content-Length: 12
 Content-Type: application/json
@@ -96,7 +96,7 @@ Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 
 Request:
 
-```
+```http
 POST / HTTP/1.1
 Accept: application/json
 Content-Type: application/json
@@ -110,7 +110,7 @@ Host: example.com
 
 Response:
 
-```
+```http
 HTTP/1.1 204 No Content
 Set-Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998; Path=/; Expires=Tue, 19 Apr 2022 10:05:11 GMT; HttpOnly
 Date: Fri, 15 Oct 15 2021 12:04:12 GMT
@@ -120,7 +120,7 @@ Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 
 Request:
 
-```
+```http
 POST / HTTP/1.1
 Accept: application/json
 Content-Type: application/json
@@ -135,7 +135,7 @@ Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998
 
 Response:
 
-```
+```http
 HTTP/1.1 201 Created
 Content-Type: application/json
 Set-Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998; Path=/; Expires=Tue, 19 Apr 2022 10:05:11 GMT; HttpOnly
@@ -148,7 +148,7 @@ Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 
 Request:
 
-```
+```http
 GET / HTTP/1.1
 Accept: application/json
 Content-Type: application/json
@@ -158,7 +158,7 @@ Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998
 
 Response:
 
-```
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 Date: Fri, 15 Oct 15 2021 12:04:12 GMT
@@ -170,7 +170,7 @@ Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 
 Request:
 
-```
+```http
 DELETE / HTTP/1.1
 Accept: application/json
 Content-Type: application/json
@@ -180,7 +180,7 @@ Cookie: user=a7715269-1d77-4162-b1ee-fc3a050d7998
 
 Response:
 
-```
+```http
 HTTP/1.1 204 No Content
 Date: Fri, 15 Oct 15 2021 12:04:12 GMT
 ```
