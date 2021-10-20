@@ -6,9 +6,9 @@ import (
 	"time"
 )
 
-// New returns an http.Handler that implements the Offen protocol. Additional
+// NewHandler returns an http.Handler that implements the Offen protocol. Additional
 // behavior can be specified by passing an arbitrary number of options.
-func New(opts ...Option) http.Handler {
+func NewHandler(opts ...Option) http.Handler {
 	s := new(server)
 	s.cookieName = defaultCookieName
 
