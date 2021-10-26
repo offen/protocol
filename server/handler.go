@@ -27,9 +27,9 @@ func NewHandler(opts ...Option) http.Handler {
 		var adapter *Adapter
 		switch r.Method {
 		case http.MethodGet:
-			adapter = s.probe
+			adapter = s.query
 			if userID == "" {
-				adapter = s.query
+				adapter = s.probe
 			}
 		case http.MethodPost:
 			adapter = s.register
@@ -131,17 +131,17 @@ func WithProbeAdapter(a Adapter) Option {
 // WithRegisterAdapter sets an adapter that is used when registering against
 // the endpoint.
 func WithRegisterAdapter(a Adapter) Option {
-	return func(s *server) { s.purge = &a }
+	return func(s *server) { s.register = &a }
 }
 
 // WithSubmitAdapter sets an adapter that is used when submitting data.
 func WithSubmitAdapter(a Adapter) Option {
-	return func(s *server) { s.purge = &a }
+	return func(s *server) { s.submit = &a }
 }
 
 // WithQueryAdapter sets an adapter that is used when querying the endpoint.
 func WithQueryAdapter(a Adapter) Option {
-	return func(s *server) { s.purge = &a }
+	return func(s *server) { s.query = &a }
 }
 
 // WithPurgeAdapter sets an adapter that is used when purging data.
@@ -173,8 +173,8 @@ func WithCookieTTL(t time.Duration) Option {
 
 // WithCookieAttributeSecure sets the Secure Attribute used when issueing
 // cookies.
-func WithCookieAttributeSecure(s bool) Option {
-	return func(s *server) { s.cookieSecure = s }
+func WithCookieAttributeSecure(b bool) Option {
+	return func(s *server) { s.cookieSecure = b }
 }
 
 // WithCookieAttributeSameSite defines the value used for the cookies' SameSite
