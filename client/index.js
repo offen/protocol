@@ -2,7 +2,6 @@ export default class Client {
   constructor (endpoint, options = {}) {
     this.endpoint = endpoint
     this.fetch = options.fetch || window.fetch
-    this.cookieName = options.cookieName || 'user'
   }
 
   probe ({ body, params }) {
