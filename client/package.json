@@ -1,0 +1,11 @@
+{
+  "name": "@offen/client",
+  "version": "1.0.0",
+  "description": "Reference client implementing the Offen protocol",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Offen Authors <hioffen@posteo.de>",
+  "license": "Apache-2.0"
+}
