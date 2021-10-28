@@ -11,7 +11,8 @@ export default class Client {
     }
     return this.fetch(url, {
       method: 'GET',
-      body: body && JSON.stringify(body)
+      body: body && JSON.stringify(body),
+      credentials: 'omit'
     })
       .then(handleFetchResponse)
   }
@@ -23,7 +24,8 @@ export default class Client {
     }
     return this.fetch(url, {
       method: 'POST',
-      body: body && JSON.stringify(body)
+      body: body && JSON.stringify(body),
+      credentials: 'omit'
     })
       .then(handleFetchResponse)
   }
