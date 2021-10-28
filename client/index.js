@@ -2,75 +2,49 @@ export default class Client {
   constructor (endpoint, options = {}) {
     this.endpoint = endpoint
     this.fetch = options.fetch || window.fetch
+    this.serializeBody = options.serializeBody || JSON.stringify
+    this.contentType = options.contentType || 'application/json'
+    this.handleResponse = options.handleResponse || handleResponse
+  }
+
+  _request (method, credentials, { body, params }) {
+    const url = new window.URL(this.endpoint)
+    if (params) {
+      url.searchParams = new window.URLSearchParams(params)
+    }
+    return this.fetch(url, {
+      method,
+      body: typeof body !== 'undefined' && this.serializeBody(body),
+      credentials,
+      headers: {
+        'Content-Type': this.contentType
+      }
+    })
+      .then(this.handleResponse)
   }
 
   probe ({ body, params }) {
-    const url = new window.URL(this.endpoint)
-    if (params) {
-      url.searchParams = new window.URLSearchParams(params)
-    }
-    return this.fetch(url, {
-      method: 'GET',
-      body: body && JSON.stringify(body),
-      credentials: 'omit'
-    })
-      .then(handleFetchResponse)
+    return this._request('GET', 'omit', { body, params })
   }
 
   register ({ body, params }) {
-    const url = new window.URL(this.endpoint)
-    if (params) {
-      url.searchParams = new window.URLSearchParams(params)
-    }
-    return this.fetch(url, {
-      method: 'POST',
-      body: body && JSON.stringify(body),
-      credentials: 'omit'
-    })
-      .then(handleFetchResponse)
+    return this._request('POST', 'omit', { body, params })
   }
 
   submit ({ body, params }) {
-    const url = new window.URL(this.endpoint)
-    if (params) {
-      url.searchParams = new window.URLSearchParams(params)
-    }
-    return this.fetch(url, {
-      method: 'PUT',
-      body: body && JSON.stringify(body),
-      credentials: 'include'
-    })
-      .then(handleFetchResponse)
+    return this._request('PUT', 'include', { body, params })
   }
 
   query ({ body, params }) {
-    const url = new window.URL(this.endpoint)
-    if (params) {
-      url.searchParams = new window.URLSearchParams(params)
-    }
-    return this.fetch(url, {
-      method: 'GET',
-      body: body && JSON.stringify(body),
-      credentials: 'include'
-    })
-      .then(handleFetchResponse)
+    return this._request('GET', 'include', { body, params })
   }
 
   purge ({ body, params }) {
-    const url = new window.URL(this.endpoint)
-    if (params) {
-      url.searchParams = new window.URLSearchParams(params)
-    }
-    return this.fetch(url, {
-      method: 'DELETE',
-      body: body && JSON.stringify(body),
-      credentials: 'include'
-    })
-      .then(handleFetchResponse)
+    return this._request('DELETE', 'include', { body, params })
   }
 }
 
-function handleFetchResponse (response) {
+function handleResponse (response) {
   if (response.status >= 400) {
     return response.clone().json()
       .catch(function () {
