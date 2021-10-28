@@ -1,7 +1,7 @@
 export default class Client {
   constructor (endpoint, options = {}) {
     this.endpoint = endpoint
-    this.fetch = options.fetch || window.fetch
+    this.fetch = options.fetch || window.fetch.bind(window)
     this.serializeBody = options.serializeBody || JSON.stringify
     this.contentType = options.contentType || 'application/json'
     this.handleResponse = options.handleResponse || handleResponse
@@ -10,12 +10,12 @@ export default class Client {
   _request (method, credentials, { body, params }) {
     const url = new window.URL(this.endpoint)
     if (params) {
-      url.searchParams = new window.URLSearchParams(params)
+      url.search = new window.URLSearchParams(params)
     }
     return this.fetch(url, {
       method,
-      body: typeof body !== 'undefined' && this.serializeBody(body),
       credentials,
+      body: typeof body === 'undefined' ? undefined : this.serializeBody(body),
       headers: {
         'Content-Type': this.contentType
       }
@@ -23,23 +23,23 @@ export default class Client {
       .then(this.handleResponse)
   }
 
-  probe ({ body, params }) {
-    return this._request('GET', 'omit', { body, params })
+  probe ({ params } = {}) {
+    return this._request('GET', 'omit', { params })
   }
 
-  register ({ body, params }) {
+  register ({ body, params } = {}) {
     return this._request('POST', 'omit', { body, params })
   }
 
-  submit ({ body, params }) {
+  submit ({ body, params } = {}) {
     return this._request('PUT', 'include', { body, params })
   }
 
-  query ({ body, params }) {
-    return this._request('GET', 'include', { body, params })
+  query ({ params } = {}) {
+    return this._request('GET', 'include', { params })
   }
 
-  purge ({ body, params }) {
+  purge ({ body, params } = {}) {
     return this._request('DELETE', 'include', { body, params })
   }
 }
