@@ -15,7 +15,9 @@ export default class Client {
     return this.fetch(url, {
       method,
       credentials,
-      body: typeof body === 'undefined' ? undefined : this.serializeBody(body),
+      body: typeof body === 'undefined'
+        ? undefined
+        : this.serializeBody(body),
       headers: {
         'Content-Type': this.contentType
       }
@@ -54,7 +56,7 @@ function handleResponse (response) {
           })
       })
       .then(function (errorBody) {
-        var err = new Error(errorBody.error)
+        const err = new Error(errorBody.error)
         err.status = response.status
         throw err
       })
