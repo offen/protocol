@@ -1,4 +1,5 @@
-# protocol
+# The Offen Protocol
+
 A specification for the discoverable exchange of data over a single HTTP endpoint
 
 __This document is an early draft and may change at any time__.
