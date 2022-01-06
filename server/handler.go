@@ -1,3 +1,9 @@
+// Copyright 2021 - Offen Authors <hioffen@posteo.de>
+// SPDX-License-Identifier: Apache-2.0
+
+// Package server provides primitives to implement an HTTP server that adheres
+// to the Offen protocol. A default http.Handler is returned and can be used
+// in any setup.
 package server
 
 import (
@@ -149,35 +155,35 @@ func WithPurgeAdapter(a Adapter) Option {
 	return func(s *server) { s.purge = &a }
 }
 
-// WithCookieName overrides the default cookie name used for handling the
-// user identifier.
+// WithCookieName overrides the default cookie name of "user" which is used for
+// storing the assigned user identifier.
 func WithCookieName(n string) Option {
 	return func(s *server) { s.cookieName = n }
 }
 
-// WithCookieAttributePath sets a Path attribute for the issued cookie.
+// WithCookieAttributePath sets a `Path` attribute for the issued cookie.
 func WithCookieAttributePath(p string) Option {
 	return func(s *server) { s.cookiePath = p }
 }
 
-// WithCookieAttributeDomain sets a Domain attribute for the issued cookie.
+// WithCookieAttributeDomain sets a `Domain` attribute for the issued cookie.
 func WithCookieAttributeDomain(d string) Option {
 	return func(s *server) { s.cookieDomain = d }
 }
 
 // WithCookieTTL sets defines the time to live that is used when calculating
-// a cookie's Expires attribute.
+// a cookie's `Expires` attribute.
 func WithCookieTTL(t time.Duration) Option {
 	return func(s *server) { s.cookieTTL = t }
 }
 
-// WithCookieAttributeSecure sets the Secure Attribute used when issueing
+// WithCookieAttributeSecure sets the `Secure` attribute used when issuing
 // cookies.
 func WithCookieAttributeSecure(b bool) Option {
 	return func(s *server) { s.cookieSecure = b }
 }
 
-// WithCookieAttributeSameSite defines the value used for the cookies' SameSite
+// WithCookieAttributeSameSite defines the value used for the cookies' `SameSite`
 // attribute.
 func WithCookieAttributeSameSite(v http.SameSite) Option {
 	return func(s *server) { s.cookieSameSite = v }
