@@ -10,10 +10,10 @@ Open an issue on this repository in case you have feedbacks or wish to implement
 Paradigms around the collection of usage data on the web are shifting.
 While collection and usage of such data itself isn't likely to go away soon, application developers are looking for new tools and approaches they can use to handle these transactions in a fair and transparent manner.
 
-__The Offen protocol aims for establishing a common set of idioms that can be picked up by implementors that strive for transparency and interoperability__.
+__The Offen protocol aims for establishing a common set of idioms that can be picked up by implementors that strive for transparency and interoperability in the exchange of data__.
 It specifies a set of operations that can be used to transparently collect usage data over a single HTTP endpoint and allow users to manage and review the data that is associated to them.
 
-Applications that implement the Offen protocol can be audited by researchers and 3rd party tools like browser extensions.
+Applications that implement the Offen protocol can be audited by researchers and are easily connected with 3rd party tools like browser extensions.
 
 ### Motivation
 
@@ -21,6 +21,12 @@ This document aims to collect the learnings and patterns we have found and imple
 While the subject seems simple enough, we found it contains unexpected subtleties that are easy to miss, which is why we want to formalize our approach and help other developers to do what we are doing in Offen: let users access their data.
 
 [offen-repo]: https://github.com/offen/offen
+
+### Technical scope
+
+The approach described in this document is intended to be used when developing web applications that are using a client / server pattern based on HTTP.
+All procedures defined are designed to work with core functionality of web browsers and servers.
+The document does not intend to prescribe anything about storage or the means of collection, it is solely describing the protocol used by the two parties to exchange data.
 
 ## Operations
 
