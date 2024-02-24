@@ -1,8 +1,8 @@
 <a href="https://www.offen.dev/">
-    <img src="https://offen.github.io/press-kit/offen-material/gfx-GitHub-Offen-logo.svg" alt="Offen logo" title="Offen" width="150px"/>
+  <img src="https://offen.github.io/press-kit/avatars/avatar-OFWA-header.svg" alt="Offen Fair Web Analytics logo" title="Offen Fair Web Analytics" width="60px"/>
 </a>
 
-# Protocol
+# Offen Protocol
 A specification for the discoverable exchange of data over a single HTTP endpoint
 
 This repository provides the home for the __Offen Protocol__ specification, as well as a server and client reference implementation.
